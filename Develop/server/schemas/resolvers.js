@@ -26,7 +26,16 @@ const resolvers = {
     },
 
     Mutation: {
-        
+        addUser: async (parent, args) => {
+            const user = await User.create(args);
+
+            // give the user a JWT. (JWT was set to have an expiration of 2 hours)
+            const token = signToken(user);
+
+            // return an object that combines the token with the user's data.
+            // This matches our Auth type we defined.
+            return { token, user };
+        },
     }
 };
 
