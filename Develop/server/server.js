@@ -21,7 +21,7 @@ const startServer = async () => {
     // of the apollo server
     typeDefs, 
     resolvers, 
-    context: authMiddleware
+    // context: authMiddleware
   });
 
   // Start the Apollo server
@@ -50,9 +50,10 @@ if (process.env.NODE_ENV === 'production') {
 // server. In other words, if we make a GET request to any location on the 
 // server that doesn't have an explicit route defined, respond with the production-ready 
 // React front-end code.
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build/index.html'));
-});
+// FOR DEPLOY ONLY
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../client/build/index.html'));
+// });
 
 // this was user for REST API
 // app.use(routes);
