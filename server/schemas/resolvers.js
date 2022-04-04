@@ -10,13 +10,11 @@ const resolvers = {
     Query: {
         users: async () => {
             return User.find()
-            .populate('savedBooks');
         },
 
         me: async (parent, args, context) => {
             if (context.user) {
-                const userData = await User.findOne({ _id: context.user._id })
-                  .populate('savedBooks');
+                const userData = await User.findOne({ _id: context.user._id });
             
                 return userData;
               }
@@ -61,7 +59,7 @@ const resolvers = {
             if(context.user){
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $addToSet: { savedBooks: {...args} } },
+                    { $addToSet: { savedBooks: args } },
                     // return back updated user object and run the 
                     // validators to make sure that the book being saved is a
                     // valid book
