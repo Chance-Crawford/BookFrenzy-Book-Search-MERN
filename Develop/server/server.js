@@ -51,9 +51,9 @@ if (process.env.NODE_ENV === 'production') {
 // server that doesn't have an explicit route defined, respond with the production-ready 
 // React front-end code.
 // FOR DEPLOY ONLY
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, '../client/build/index.html'));
-// });
+ app.get('*', (req, res) => {
+   res.sendFile(path.join(__dirname, '../client/build/index.html'));
+ });
 
 // this was user for REST API
 // app.use(routes);
